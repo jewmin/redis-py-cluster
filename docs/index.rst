@@ -71,7 +71,6 @@ Supported python versions
 -------------------------
 
 - 2.7
-- 3.3
 - 3.4.1+ (See note)
 - 3.5
 - 3.6
