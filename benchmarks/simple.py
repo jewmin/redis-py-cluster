@@ -77,7 +77,7 @@ Usage:
   simple [--host IP] [--port PORT] [--nocluster] [--timeit] [--pipeline] [--resetlastkey] [-h] [--version]
 
 Options:
-  --nocluster        If flag is set then StrictRedis will be used instead of cluster lib
+  --nocluster        If flag is set then Redis class will be used instead of cluster lib
   --host IP          Redis server to test against [default: 127.0.0.1]
   --port PORT        Port on redis server [default: 7000]
   --timeit           run a mini benchmark to test performance
@@ -92,11 +92,11 @@ Options:
     startup_nodes = [{"host": args["--host"], "port": args["--port"]}]
 
     if not args["--nocluster"]:
-        from rediscluster import StrictRedisCluster
-        rc = StrictRedisCluster(startup_nodes=startup_nodes, max_connections=32, socket_timeout=0.1, decode_responses=True)
+        from rediscluster import RedisCluster
+        rc = RedisCluster(startup_nodes=startup_nodes, max_connections=32, socket_timeout=0.1, decode_responses=True)
     else:
-        from redis import StrictRedis
-        rc = StrictRedis(host=args["--host"], port=args["--port"], socket_timeout=0.1, decode_responses=True)
+        from redis import Redis
+        rc = Redis(host=args["--host"], port=args["--port"], socket_timeout=0.1, decode_responses=True)
 
     if args["--timeit"]:
         test_itterstions = [
