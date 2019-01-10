@@ -727,7 +727,7 @@ class RedisCluster(Redis):
 
         return self.mset(**kwargs)
 
-    def rename(self, src, dst):
+    def rename(self, src, dst, replace=False):
         """
         Rename key ``src`` to ``dst``
 
@@ -749,7 +749,7 @@ class RedisCluster(Redis):
             ttl = 0
 
         self.delete(dst)
-        self.restore(dst, ttl, data)
+        self.restore(dst, ttl, data, replace)
         self.delete(src)
 
         return True
